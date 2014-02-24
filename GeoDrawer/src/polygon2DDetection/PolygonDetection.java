@@ -32,8 +32,6 @@ public abstract class PolygonDetection
 		{
 			//List of point on the vector line applied on the current Position
 			ArrayList<PositionProportion> app = VectorDetection.isOnVectorLine(pos.get(i), p.getVectorList().get(0), pos, APROX);
-			System.out.println("Point : "+pos.get(i).toString()+"App : "+app.toString()+
-					"\tPremier vecteur : "+p.getVectorList().get(0).toString());
 			
 			for(int j = 0; j < app.size(); j++)
 			{
@@ -44,21 +42,21 @@ public abstract class PolygonDetection
 				Position temp = null;
 				Position current = app.get(j).getPosition();
 				
-				for(int vect = 1; vect < p.getVectorList().size(); vect++)
+				boolean ok = true;
+				
+				for(int vect = 1; vect < p.getVectorList().size() && ok; vect++)
 				{
+					ok = true;
 					Vector currentVector = p.getVectorList().get(vect);
-					System.out.println("Vecteur courant : "+currentVector.toString());
 					try 
 					{
 						temp = VectorDetection.bestAproxPositionOf(pos,
 								currentVector.multiplied(app.get(j).getProportion()).application(current),
 								APROX);
-						System.out.println(temp.toString());
 					} 
 					catch (NoPositionAvailableException e) 
 					{
-						System.out.println("Break;");
-						break;
+						ok = false;
 					}
 					form.add(temp);
 					current = temp;

@@ -38,7 +38,7 @@ public class Main
 		Position a = new Position(1,1);
 		Position b = new Position(4,1);
 		Position c = new Position(2,4);
-		Position d = new Position(3,3);
+		Position d = new Position(2,2);
 		Position e = new Position(5,2);
 		Position f = new Position(3,5);
 		

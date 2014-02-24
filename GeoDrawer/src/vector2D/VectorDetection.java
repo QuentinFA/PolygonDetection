@@ -21,7 +21,8 @@ public abstract class VectorDetection
 	 * @param APROX the value of approximation (if 0, returns only Positions on the line)
 	 * @return a collection of Positions
 	 */
-	public static ArrayList<PositionProportion> isOnVectorLine(Position startPosition, Vector applyVector, List<Position> pos, double APROX)
+	public static ArrayList<PositionProportion> isOnVectorLine(Position startPosition, 
+			Vector applyVector, List<Position> pos, double APROX)
 	{
 		ArrayList<PositionProportion> result = new ArrayList<PositionProportion>();
 		
@@ -33,11 +34,15 @@ public abstract class VectorDetection
 			double c = applyVector.getX() * startPosition.getY() - applyVector.getY() * startPosition.getX();
 			
 			double dist = Math.abs(a * posTemp.getX() + b * posTemp.getY() + c) / Math.sqrt( Math.pow(a,2) + Math.pow(b,2) );
-			//System.out.println("Point : "+posTemp.toString()+"\tDistance : "+dist);
 			if (dist <= APROX && !startPosition.equals(posTemp))
 			{
-				double k = Math.sqrt((Math.pow(startPosition.getX() - posTemp.getX(), 2) 
-						+ Math.pow(startPosition.getX() - posTemp.getX(), 2)) - dist*dist) / applyVector.norm();
+				//double k = Math.sqrt((Math.pow(startPosition.getX() - posTemp.getX(), 2) 
+						//+ Math.pow(startPosition.getX() - posTemp.getX(), 2)) - dist*dist) / applyVector.norm();
+				double k = Math.sqrt(
+						(posTemp.getX() - startPosition.getX())*(posTemp.getX() - startPosition.getX()) +
+						(posTemp.getY() - startPosition.getY())*(posTemp.getY() - startPosition.getY()) + dist)
+						/ applyVector.norm();
+				
 				Vector tempForScalaire = new Vector(startPosition, posTemp);
 				double scalaire = applyVector.getX()*tempForScalaire.getX() + applyVector.getY()*tempForScalaire.getY();
 				if (scalaire < 0)
@@ -56,9 +61,9 @@ public abstract class VectorDetection
 	public static Position bestAproxPositionOf(List<Position> pos, Position refPosition, double APROX) 
 			throws NoPositionAvailableException
 	{
-		Position best = pos.get(0);
-		double normBest = (new Vector(refPosition, pos.get(0))).norm();
-		for(int i = 1; i < pos.size(); i++)
+		Position best = null;
+		double normBest = APROX+8;
+		for(int i = 0; i < pos.size(); i++)
 		{
 			double tempNorm = new Vector(refPosition, pos.get(i)).norm();
 			if(tempNorm < normBest)
