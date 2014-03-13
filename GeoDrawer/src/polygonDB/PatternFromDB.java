@@ -1,4 +1,4 @@
-package getPatternFromDB;
+package polygonDB;
 
 import java.util.ArrayList;
 import java.util.Iterator;

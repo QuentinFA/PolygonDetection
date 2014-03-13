@@ -3,6 +3,7 @@ package polygon2DDetection;
 import java.util.ArrayList;
 import java.util.List;
 
+import polygonDB.PatternFromDB;
 import vector2D.Position;
 import vector2D.Vector;
 
@@ -17,6 +18,7 @@ public class Main
 	
 	public static void main(String[] args)
 	{
+		PatternFromDB.getPolygonList();
 		/* Hearth :
 			 * 44.912198,4.916489
 			 * 44.911712,4.916039
@@ -74,5 +76,5 @@ public class Main
 		System.out.println("Forme à détecter : \n\t"+triangle1.toString());
 		System.out.println("Nuage de point : \n\t"+p.toString());
 		System.out.println("Résultat : \n\t"+PolygonDetection.isTherePolygon(p, triangle1, APROXIMATION).toString());
-	}
+		}
 }
