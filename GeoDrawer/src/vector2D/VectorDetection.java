@@ -36,8 +36,6 @@ public abstract class VectorDetection
 			double dist = Math.abs(a * posTemp.getX() + b * posTemp.getY() + c) / Math.sqrt( Math.pow(a,2) + Math.pow(b,2) );
 			if (dist <= APROX && !startPosition.equals(posTemp))
 			{
-				//double k = Math.sqrt((Math.pow(startPosition.getX() - posTemp.getX(), 2) 
-						//+ Math.pow(startPosition.getX() - posTemp.getX(), 2)) - dist*dist) / applyVector.norm();
 				double k = Math.sqrt(
 						(posTemp.getX() - startPosition.getX())*(posTemp.getX() - startPosition.getX()) +
 						(posTemp.getY() - startPosition.getY())*(posTemp.getY() - startPosition.getY()) + dist)
@@ -53,11 +51,19 @@ public abstract class VectorDetection
 		return result;
 	}
 	
-	public static boolean nearOfThePointByAprox(Position pToTest, Position refPosition, double APROX)
+	/*public static boolean nearOfThePointByAprox(Position pToTest, Position refPosition, double APROX)
 	{
 		return (new Vector(pToTest, refPosition).norm() <= APROX);
-	}
+	}*/
 	
+	/**
+	 * Return the best Position near of the given one, in APROX radius from the refPosition
+	 * @param pos Position cloud
+	 * @param refPosition start position
+	 * @param APROX approximation radius
+	 * @return the best position
+	 * @throws NoPositionAvailableException if there is no one
+	 */
 	public static Position bestAproxPositionOf(List<Position> pos, Position refPosition, double APROX) 
 			throws NoPositionAvailableException
 	{
