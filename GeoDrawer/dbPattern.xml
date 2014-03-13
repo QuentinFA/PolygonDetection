@@ -1,0 +1,20 @@
+<patterns>
+	<pattern>
+		<name>Square</name>
+		<vectors>
+			<vector>2,0</vector>
+			<vector>0,2</vector>
+			<vector>-2,0</vector>
+			<vector>0,-2</vector>
+		</vectors>
+		</pattern>
+	<pattern>
+		<name>Rectangle</name>
+		<vectors>
+			<vector>3,0</vector>
+			<vector>0,2</vector>
+			<vector>-3,0</vector>
+			<vector>0,-2</vector>
+		</vectors>
+	</pattern>
+</patterns>
