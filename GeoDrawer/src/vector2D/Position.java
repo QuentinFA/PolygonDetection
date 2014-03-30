@@ -11,12 +11,12 @@ public class Position
 	/**
 	 * X coordinate
 	 */
-	private double x;
+	protected double x;
 	
 	/**
 	 * Y coordinate
 	 */
-	private double y;
+	protected double y;
 	
 	/**
 	 * Constructor based on given X and Y coordinates
