@@ -132,17 +132,17 @@ public class Main
 		}
 		catch (NotPolygonException exception)
 		{
-			System.out.println("Erreur cr�ation du triangle");
+			System.out.println("Erreur création du triangle");
 		}
 		
-		System.out.println("Forme � d�tecter : \n\t"+triangle1.toString());
+		System.out.println("Forme à détecter : \n\t"+triangle1.toString());
 		System.out.println("Nuage de point : \n\t"+p.toString());
-		System.out.println("R�sultat : \n\t"+PolygonDetection.isTherePolygon(p, triangle1, APROXIMATION).toString());
+		System.out.println("Résultat : \n\t"+PolygonDetection.isTherePolygon(p, triangle1, APROXIMATION).toString());
 
 		
-		System.out.println("Forme � d�tecter : \n\t"+coeur.toString());
+		System.out.println("Forme à détecter : \n\t"+coeur.toString());
 		ArrayList<ArrayList<Position>> franck = PolygonDetection.isTherePolygon(p, coeur, APROXIMATION);
-		System.out.println("R�sultat : \n\t"+franck.toString());
+		System.out.println("Résultat : \n\t"+franck.toString());
 		System.out.println(franck.size());
 	}
 }
