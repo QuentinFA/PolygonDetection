@@ -66,7 +66,7 @@ public class Road
 	
 	public String toString()
 	{
-		return "Road :\nID : "+this.id+"\nPoints :\n"+this.roadNodes.toString();
+		return this.id+this.roadNodes.toString();
 	}
 	
 	/**
@@ -77,7 +77,7 @@ public class Road
 	{
 		for(int i = 0; i < this.roadNodes.size(); i++)
 		{
-			if (node.equals(this.roadNodes.get(i).equals(node)))
+			if (node.equals(this.roadNodes.get(i)))
 				return true;
 		}
 		return false;

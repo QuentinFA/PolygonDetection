@@ -17,7 +17,7 @@ public abstract class RoadCheckPolygon
 	 * @param roads list of roads
 	 * @return true if it is correct
 	 */
-	public boolean doesDetectedPolygonMatchesWithRoads(ArrayList<Position> detectedPolygon, ArrayList<Road> roads)
+	public static boolean doesDetectedPolygonMatchesWithRoads(ArrayList<Position> detectedPolygon, ArrayList<Road> roads)
 	{
 		for(int j = 0; j < roads.size(); j++)
 		{
@@ -36,7 +36,7 @@ public abstract class RoadCheckPolygon
 	 * Clear the list from bad detected polygon which don't match with roads
 	 * @return the cleared list
 	 */
-	public ArrayList<ArrayList<Position>> getClearedListFromBadPolygonRoad(ArrayList<ArrayList<Position>> detectedPolygons, ArrayList<Road> roads)
+	public static ArrayList<ArrayList<Position>> getClearedListFromBadPolygonRoad(ArrayList<ArrayList<Position>> detectedPolygons, ArrayList<Road> roads)
 	{
 		ArrayList<ArrayList<Position>> result = new ArrayList<ArrayList<Position>>();
 		for(int i = 0; i < detectedPolygons.size(); i++)
