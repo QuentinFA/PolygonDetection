@@ -1,7 +1,6 @@
 package road;
 
 import java.util.ArrayList;
-
 import vector2D.Position;
 
 /**
@@ -17,16 +16,51 @@ public abstract class RoadCheckPolygon
 	 * @param roads list of roads
 	 * @return true if it is correct
 	 */
-	public static boolean doesDetectedPolygonMatchesWithRoads(ArrayList<Position> detectedPolygon, ArrayList<Road> roads)
+	private static boolean doesDetectedPolygonMatchesWithRoads(ArrayList<Position> detectedPolygon, ArrayList<Road> roads)
 	{
-		for(int j = 0; j < roads.size(); j++)
+		ArrayList<Road>[] roadListByNode = new ArrayList[detectedPolygon.size()];
+		for (int i = 0; i < detectedPolygon.size(); i++)
+			roadListByNode[i] = new ArrayList<Road>();
+
+		for (int i = 0; i < detectedPolygon.size(); i++)
 		{
-			for(int i = 0; i < detectedPolygon.size(); i++)
+			for (int j = 0; j < roads.size(); j++)
 			{
-				if(i == detectedPolygon.size()-1)
-					return roads.get(j).isOnRoad(detectedPolygon.get(i)) && roads.get(j).isOnRoad(detectedPolygon.get(0));
-				if (roads.get(j).isOnRoad(detectedPolygon.get(i)) && roads.get(j).isOnRoad(detectedPolygon.get(i+1)))
-					break;
+				Road currentRoad = roads.get(j);
+				if (currentRoad.isOnRoad(detectedPolygon.get(i)))
+					roadListByNode[i].add(currentRoad);
+			}
+		}
+		
+		for (int i = 0; i < detectedPolygon.size(); i++)
+		{
+			if (i == detectedPolygon.size()-1)
+				// Traitement du dernier point
+				return isThereACommonRoad(roadListByNode[i], roadListByNode[0]);
+			else
+			{
+				// On abandonne si le point courrant et le suivant n'ont pas de routes en commun
+				if (!(isThereACommonRoad(roadListByNode[i], roadListByNode[i+1])))
+					return false;
+			}
+		} 
+		return false;
+	}
+	
+	/**
+	 * Check if the two given road list has a common road
+	 * @param roadList1 the first list
+	 * @param roadList2 the second list
+	 * @return 
+	 */
+	private static boolean isThereACommonRoad(ArrayList<Road> roadList1, ArrayList<Road> roadList2)
+	{
+		for (int i = 0; i < roadList1.size(); i++)
+		{
+			for (int j = 0; j < roadList2.size(); j++)
+			{
+				if (roadList1.get(i).equals(roadList2.get(j)))
+					return true;
 			}
 		}
 		return false;
@@ -34,6 +68,8 @@ public abstract class RoadCheckPolygon
 	
 	/**
 	 * Clear the list from bad detected polygon which don't match with roads
+	 * @param detectedPolygons the list containing the detected Polygons
+	 * @param roads list of roads
 	 * @return the cleared list
 	 */
 	public static ArrayList<ArrayList<Position>> getClearedListFromBadPolygonRoad(ArrayList<ArrayList<Position>> detectedPolygons, ArrayList<Road> roads)
