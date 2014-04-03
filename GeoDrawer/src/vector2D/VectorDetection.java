@@ -14,7 +14,7 @@ public abstract class VectorDetection
 	 * Detect Positions of the given collection which are on the vector applyVector line, applied on the Position startPosition
 	 * Return also Positions which are in the radius APROX from the line
 	 * Create a new PositionProportion for each Positions on the line, containing the corresponding proportion
-	 * 		applied on the vector to get the point (or its équivalent)
+	 * 		applied on the vector to get the point (or its equivalent)
 	 * @param v the vector to apply
 	 * @param a the position on which the vector will be applied
 	 * @param pos the collection of Position for searching
@@ -50,11 +50,6 @@ public abstract class VectorDetection
 		}
 		return result;
 	}
-	
-	/*public static boolean nearOfThePointByAprox(Position pToTest, Position refPosition, double APROX)
-	{
-		return (new Vector(pToTest, refPosition).norm() <= APROX);
-	}*/
 	
 	/**
 	 * Return the best Position near of the given one, in APROX radius from the refPosition
